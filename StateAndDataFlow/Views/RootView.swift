@@ -8,11 +8,19 @@
 import SwiftUI
 
 struct RootView: View {
+    
+    @EnvironmentObject private var loginViewVM: LoginViewViewModel
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        if loginViewVM.user.isLoggedIn {
+            ContentView()
+        } else {
+            LoginView()
+        }
     }
 }
 
 #Preview {
     RootView()
+        .environmentObject(LoginViewViewModel())
 }
